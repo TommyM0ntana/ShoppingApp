@@ -1,0 +1,5 @@
+const names = ['tom', 'john']
+names.map(name) => `<li>${name}</li>`
+output:
+<li>tomy</li>,
+<li>John</li>

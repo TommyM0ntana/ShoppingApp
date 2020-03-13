@@ -118,7 +118,42 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"shopping.js":[function(require,module,exports) {
-console.log('it works');
+//select the items we need
+var shoppingForm = document.querySelector('.shopping');
+var list = document.querySelector('.list'); //array to hold out items(state)
+
+var items = []; //create a function that output from the input of .item
+
+function handleSubmit(e) {
+  e.preventDefault();
+  var name = e.currentTarget.item.value;
+  var item = {
+    name: name,
+    id: Date.now(),
+    complete: false
+  }; //push the item into a state
+
+  items.push(item);
+  console.log("there are ".concat(items.length, " in your state")); //clear the form 2 ways
+  //e.currentTarget.item.value = ''
+
+  e.target.reset();
+  displayItems();
+} //dislpay the items
+
+
+function displayItems() {
+  console.log(items); //const maped to return un  array of tag whit the item name
+  //and join in the end to convert it into strign
+
+  var html = items.map(function (item) {
+    return "<li> ".concat(item.name, "</li>");
+  }).join();
+  console.log(html);
+} //Event Listener
+
+
+shoppingForm.addEventListener('submit', handleSubmit);
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
